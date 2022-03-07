@@ -1,0 +1,51 @@
+clear all
+close all
+
+%
+f = imread('electron_micrograph_of_a_human_chromosome.jpg');
+figure, imshow(f);
+pause;
+%
+f = 1-im2double(f);
+h = fspecial('gaussian',25,15);
+g = imfilter(f,h,'replicate');
+figure, imshow(g);
+pause;
+%
+g = im2bw(g,1.7*graythresh(g));
+figure, imshow(g);
+pause;
+%
+s = bwmorph(g,'skel',Inf);
+figure, imshow(s);
+pause;
+%
+s1 = bwmorph(s,'spur',25);
+figure, imshow(s1);
+
+
+fSize=size(f);
+fCopy=f;
+currentMatrix=zeros(3);
+
+for i=1:fSize(1)
+for j=1:fSize(2)
+
+    
+   
+    if fCopy(i-1,j-1)
+        
+
+    if nonZeroTotal
+    %condition a
+
+    %condition b
+
+    %condition c
+
+    %condition d
+    
+    end
+
+end
+end
