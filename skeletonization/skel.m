@@ -61,13 +61,21 @@ for i=1:fSize(1)
 
         %condition a
         if (nonZeroTotal>=2) && (nonZeroTotal<=6)
-           
+
+            sequence=[fCopy(i,j-1) fCopy(i+1,j-1) fCopy(i,j) fCopy(i+1,j+1) fCopy(i,j+1) fCopy(i-1,j+1) fCopy(i-1,j) fCopy(i-1,j-1) fCopy(i,j-1)];
+            %           p2,             p3,             p4,      p5,            p6,         p7,             p8,         p9,             p2
+
+            for i=1:numel(sequence-1)
+                
+                if(sequence(i) ~=sequence(i+1))
+                
+                end
+
+            end
+
 
             %condition b
-                if
-            %condition c
 
-            %condition d
 
         end
 

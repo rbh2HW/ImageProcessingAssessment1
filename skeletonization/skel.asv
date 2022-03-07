@@ -29,23 +29,55 @@ fCopy=f;
 currentMatrix=zeros(3);
 
 for i=1:fSize(1)
-for j=1:fSize(2)
+    for j=1:fSize(2)
 
-    
-   
-    if fCopy(i-1,j-1)
-        
 
-    if nonZeroTotal
-    %condition a
+        nonZeroTotal=0;
+        if ~fCopy(i-1,j-1)%left top
+            nonZeroTotal=nonZeroTotal+1;
+        end
 
-    %condition b
+        if ~fCopy(i-1,j)%left middle
+            nonZeroTotal=nonZeroTotal+1;
+        end
+        if ~fCopy(i-1,j+1) % left bottom
+            nonZeroTotal=nonZeroTotal+1;
+        end
+        if ~fCopy(i+1,j-1) % right top
+            nonZeroTotal=nonZeroTotal+1;
+        end
+        if ~fCopy(i,j) % right middle
+            nonZeroTotal=nonZeroTotal+1;
+        end
+        if ~fCopy(i+1,j+1) % right bottom
+            nonZeroTotal=nonZeroTotal+1;
+        end
+        if ~fCopy(i,j+1) % bottom middle
+            nonZeroTotal=nonZeroTotal+1;
+        end
+        if ~fCopy(i,j-1) % top middle
+            nonZeroTotal=nonZeroTotal+1;
+        end
 
-    %condition c
+        %condition a
+        if (nonZeroTotal>=2) && (nonZeroTotal<=6)
 
-    %condition d
-    
+            sequence=[fCopy(i,j-1) fCopy(i+1,j-1) fCopy(i,j) fCopy(i+1,j+1) fCopy(i,j+1) fCopy(i-1,j+1) fCopy(i-1,j) fCopy(i-1,j-1) fCopy(i,j-1)];
+            %           p2,             p3,             p4,      p5,            p6,         p7,             p8,         p9,             p2
+
+            for i=1:numel(sequence-1)
+                
+                if(sequence(i) ~=sequence(i+1))
+                
+                end
+
+            end
+
+
+            %condition b
+
+
+        end
+
     end
-
-end
 end
