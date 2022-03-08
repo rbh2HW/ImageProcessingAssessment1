@@ -4,42 +4,48 @@ close all
 %
 f = imread('electron_micrograph_of_a_human_chromosome.jpg');
 figure, imshow(f);
-pause;
-%
-f = 1-im2double(f);
-h = fspecial('gaussian',25,15);
-g = imfilter(f,h,'replicate');
-figure, imshow(g);
-pause;
-%
-g = im2bw(g,1.7*graythresh(g));
-figure, imshow(g);
-pause;
-%
-s = bwmorph(g,'skel',Inf);
-figure, imshow(s);
-pause;
-%
-s1 = bwmorph(s,'spur',25);
-figure, imshow(s1);
+% pause;
+% %
+% f = 1-im2double(f);
+% h = fspecial('gaussian',25,15);
+% g = imfilter(f,h,'replicate');
+% figure, imshow(g);
+% pause;
+% %
+% g = im2bw(g,1.7*graythresh(g));
+% figure, imshow(g);
+% pause;
+% %
+% s = bwmorph(g,'skel',Inf);
+% figure, imshow(s);
+% pause;
+% %
+% s1 = bwmorph(s,'spur',25);
+% figure, imshow(s1);
 
 
 fSize=size(f);
 
 currentMatrix=zeros(3);
 
-for algoIterations=1:2
+testMatrix=[{9,2,3},{8,1,4},{7,6,5}]
+testMatrix=[9,2,3; 8,1,4; 7,6,5];
+
+% workingArray=ones(fSize);
+
+for algoIterations=1:1000
+    disp(algoIterations)
     if algoIterations==1
         newIterationArray=f;
-        workingArray=ones(fsize);
+        workingArray=ones(fSize);
     else
-        newIterationArray=newIterationArray.*workingarray;
-        workingArray=ones(fsize);
+        newIterationArray=newIterationArray.*uint8(workingArray);
+        workingArray=ones(fSize);
     end
 
 
-    for i=1:fSize(1)
-        for j=1:fSize(2)
+    for i=2:(fSize(1)-1)
+        for j=2:(fSize(2)-1)
 
 
             nonZeroTotal=0;
@@ -107,5 +113,10 @@ for algoIterations=1:2
 
         end
     end
+
+
 end
 
+newIterationArray=newIterationArray.*uint8(workingArray);
+figure(1)
+imshow(newIterationArray)
