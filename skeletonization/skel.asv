@@ -33,7 +33,7 @@ testMatrix=[9,2,3; 8,1,4; 7,6,5];
 
 % workingArray=ones(fSize);
 
-for algoIterations=1:10000
+for algoIterations=1:8000
     disp(algoIterations)
     if algoIterations==1
         newIterationArray=f;
@@ -101,7 +101,7 @@ for algoIterations=1:10000
                         %condition d
                         conditiond=newIterationArray(i,j-1) *newIterationArray(i,j+1) *newIterationArray(i-1,j);
                         if conditiond==0
-                            disp("set zero")
+                            disp()
                             workingArray(i,j)=0;
                         end
 
