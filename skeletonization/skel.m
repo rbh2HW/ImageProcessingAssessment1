@@ -6,16 +6,16 @@ f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\im
 figure, imshow(f);
 % pause;
 % %
-% f = 1-im2double(f);
-% h = fspecial('gaussian',25,15);
-% g = imfilter(f,h,'replicate');
-% figure, imshow(g);
-% pause;
-% %
-% g = im2bw(g,1.7*graythresh(g));
-% figure, imshow(g);
-% pause;
-% %
+f = im2double(f);
+h = fspecial('gaussian',25,15);
+g = imfilter(f,h,'replicate');
+figure, imshow(g);
+
+%
+g = im2bw(g,1.7*graythresh(g));
+figure, imshow(g);
+
+%
 % s = bwmorph(g,'skel',Inf);
 % figure, imshow(s);
 % pause;
@@ -23,8 +23,9 @@ figure, imshow(f);
 % s1 = bwmorph(s,'spur',25);
 % figure, imshow(s1);
 
-
+f=g;
 fSize=size(f);
+% g = im2bw(f);
 
 currentMatrix=zeros(3);
 
@@ -42,9 +43,9 @@ for algoIterations=1:200
     if algoIterations==1
         newIterationArray=newF;
         workingArray=ones(fSize);
-    else
-        newIterationArray(2:fSize(1)+1,2:fSize(2)+1)=newIterationArray(2:fSize(1)+1,2:fSize(2)+1).*double(workingArray);
-        workingArray=ones(fSize);
+%     else
+%         newIterationArray(2:fSize(1)+1,2:fSize(2)+1)=newIterationArray(2:fSize(1)+1,2:fSize(2)+1).*double(workingArray);
+%         workingArray=ones(fSize);
     end
 
 
@@ -85,13 +86,13 @@ for algoIterations=1:200
                 %condition a
                 if (nonZeroTotal>=2) && (nonZeroTotal<=6)
 
-                    sequence=[newIterationArray(i,j-1) newIterationArray(i+1,j-1) newIterationArray(i,j) newIterationArray(i+1,j+1) newIterationArray(i,j+1) newIterationArray(i-1,j+1) newIterationArray(i-1,j) newIterationArray(i-1,j-1) newIterationArray(i,j-1)];
-                    %           p2,             p3,             p4,      p5,            p6,         p7,             p8,         p9,             p2
+                    sequence=[newIterationArray(i,j-1) newIterationArray(i+1,j-1) newIterationArray(i+1,j) newIterationArray(i+1,j+1) newIterationArray(i,j+1) newIterationArray(i-1,j+1) newIterationArray(i-1,j) newIterationArray(i-1,j-1) newIterationArray(i,j-1)];
+                    %           p2,                          p3,                             p4,                  p5,                    p6,                     p7,                          p8,                    p9,                         p2
 
                     TValue=0;
                     for i=1:numel(sequence)-1
 
-                        if(sequence(i)==0 && sequence(i+1)==1) | (sequence(9)==0 && sequence(1)==1)
+                        if(sequence(i)==0 && sequence(i+1)==1) 
                             TValue=TValue+1;
                         end
 
@@ -110,8 +111,8 @@ for algoIterations=1:200
                                 %condition d
                                 conditiond=newIterationArray(i,j+1) *newIterationArray(i-1,j) *newIterationArray(i+1,j);
                                 if conditiond==0
-                                                                disp("set zero")
-                                    workingArray(i,j)=0;
+%                                                                 disp("set zero")
+                                    workingArray(i-1,j-1)=0;
                                 end
 
                             end
@@ -122,8 +123,8 @@ for algoIterations=1:200
                                 %condition d
                                 conditiond=newIterationArray(i,j-1) *newIterationArray(i+1,j) *newIterationArray(i-1,j);
                                 if conditiond==0
-                                                                disp("set zero")
-                                    workingArray(i,j)=0;
+%                                                                 disp("set zero")
+                                    workingArray(i-1,j-1)=0;
                                 end
 
                             end
@@ -137,14 +138,17 @@ for algoIterations=1:200
 
             end
         end
+        %deleting the values after the tasks
+            newIterationArray(2:fSize(1)+1,2:fSize(2)+1)=newIterationArray(2:fSize(1)+1,2:fSize(2)+1).*double(workingArray);
+    workingArray=ones(fSize);
     end
-
 
 
 end
 
-newIterationArray(2:fSize(1)+1,2:fSize(2)+1)=newIterationArray(2:fSize(1)+1,2:fSize(2)+1).*double(workingArray);
+% newIterationArray(2:fSize(1)+1,2:fSize(2)+1)=newIterationArray(2:fSize(1)+1,2:fSize(2)+1).*double(workingArray);
+finalImage=newIterationArray(2:fSize(1)+1,2:fSize(2)+1);
 subplot(2,1,1)
 imshow(f)
 subplot(2,1,2)
-imshow(newIterationArray)
+imshow(finalImage)
