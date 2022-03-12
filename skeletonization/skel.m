@@ -2,7 +2,7 @@ clear all
 close all
 
 %
-f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\images\mapleLeaf.tif');
+f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\images\square.tif');
 figure, imshow(f);
 % pause;
 % %
@@ -23,7 +23,7 @@ figure, imshow(g);
 % s1 = bwmorph(s,'spur',25);
 % figure, imshow(s1);
 
-f=g;
+% f=g;
 fSize=size(f);
 % g = im2bw(f);
 
