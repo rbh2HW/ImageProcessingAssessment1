@@ -2,7 +2,7 @@ clear all
 close all
 
 %
-f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\legBone.tif');
+f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\triangle.tif');
 figure, imshow(f);
 % pause;
 % %
@@ -38,7 +38,7 @@ newF=zeros(fSize(1)+2,fSize(2)+2);
 newF(2:fSize(1)+1,2:fSize(2)+1)=f;
 
 %amount of times algo applied to image
-for algoIterations=1:100
+for algoIterations=1:200
     disp(algoIterations)
     if algoIterations==1
         newIterationArray=newF;
@@ -54,8 +54,8 @@ for algoIterations=1:100
     for task=1:2
 
 
-        for i=2:(fSize(1))+1
-            for j=2:(fSize(2))+1
+        for j=2:(fSize(1))+1
+            for i=2:(fSize(2))+1
                 oneNeibourZero=newIterationArray(i-1,j-1)*newIterationArray(i-1,j)*newIterationArray(i-1,j+1)*newIterationArray(i+1,j-1)*newIterationArray(i+1,j)*newIterationArray(i+1,j+1)*newIterationArray(i,j+1)*newIterationArray(i,j-1);
                 if newIterationArray(i,j)==1 && oneNeibourZero==0
                     nonZeroTotal=0;
@@ -110,7 +110,7 @@ for algoIterations=1:100
                                 conditionc=newIterationArray(i,j-1) *newIterationArray(i+1,j)*newIterationArray(i,j+1);
                                 if conditionc==0
 
-                                    %condition d task 1
+                                    %condition d
                                     conditiond=newIterationArray(i,j+1) *newIterationArray(i-1,j) *newIterationArray(i+1,j);
                                     if conditiond==0
                                         %                                                                 disp("set zero")
@@ -119,11 +119,10 @@ for algoIterations=1:100
 
                                 end
                             else
-                                %condition task 2
                                 conditionc=newIterationArray(i,j-1) *newIterationArray(i+1,j)*newIterationArray(i-1,j);
                                 if conditionc==0
 
-                                    %condition d task 2
+                                    %condition d
                                     conditiond=newIterationArray(i,j-1) *newIterationArray(i+1,j) *newIterationArray(i-1,j);
                                     if conditiond==0
                                         %                                                                 disp("set zero")
