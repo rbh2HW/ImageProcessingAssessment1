@@ -2,7 +2,11 @@ clear all
 close all
 
 %
-f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\legBone.tif');
+% f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\legBone.tif');
+f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\mapleLeaf.tif');
+% f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\penny.tif');
+% f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\square.tif');
+% f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\triangle.tif');
 figure, imshow(f);
 % pause;
 % %
