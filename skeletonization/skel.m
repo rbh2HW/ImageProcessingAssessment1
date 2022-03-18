@@ -19,6 +19,9 @@ figure, imshow(g);
 g = im2bw(g,1.7*graythresh(g));
 figure, imshow(g);
 
+
+
+
 %
 % s = bwmorph(g,'skel',Inf);
 % figure, imshow(s);
@@ -28,7 +31,7 @@ figure, imshow(g);
 % figure, imshow(s1);
 
 % f=g;
-fSize=size(f);
+fSize=size(g);
 % g = im2bw(f);
 
 currentMatrix=zeros(3);
@@ -39,10 +42,10 @@ testMatrix=[9,2,3; 8,1,4; 7,6,5];
 % workingArray=ones(fSize);
 
 newF=zeros(fSize(1)+2,fSize(2)+2);
-newF(2:fSize(1)+1,2:fSize(2)+1)=f;
+newF(2:fSize(1)+1,2:fSize(2)+1)=g;
 
 %amount of times algo applied to image
-for algoIterations=1:100
+for algoIterations=1:200
     disp(algoIterations)
     if algoIterations==1
         newIterationArray=newF;
@@ -128,7 +131,7 @@ for algoIterations=1:100
                                 if conditionc==0
 
                                     %condition d task 2
-                                    conditiond=newIterationArray(i,j-1) *newIterationArray(i+1,j) *newIterationArray(i-1,j);
+                                    conditiond=newIterationArray(i,j-1) *newIterationArray(i,j+1) *newIterationArray(i-1,j);
                                     if conditiond==0
                                         %                                                                 disp("set zero")
                                         workingArray(i-1,j-1)=0;
@@ -158,7 +161,7 @@ end
 
 % newIterationArray(2:fSize(1)+1,2:fSize(2)+1)=newIterationArray(2:fSize(1)+1,2:fSize(2)+1).*double(workingArray);
 finalImage=newIterationArray(2:fSize(1)+1,2:fSize(2)+1);
-subplot(2,1,1)
+subplot(1,2,1)
 imshow(f)
-subplot(2,1,2)
+subplot(1,2,2)
 imshow(finalImage)

@@ -31,7 +31,7 @@ figure, imshow(g);
 % figure, imshow(s1);
 
 % f=g;
-fSize=size(g);
+fSize=size(f);
 % g = im2bw(f);
 
 currentMatrix=zeros(3);
@@ -42,10 +42,10 @@ testMatrix=[9,2,3; 8,1,4; 7,6,5];
 % workingArray=ones(fSize);
 
 newF=zeros(fSize(1)+2,fSize(2)+2);
-newF(2:fSize(1)+1,2:fSize(2)+1)=g;
+newF(2:fSize(1)+1,2:fSize(2)+1)=f;
 
 %amount of times algo applied to image
-for algoIterations=1:200
+for algoIterations=1:100
     disp(algoIterations)
     if algoIterations==1
         newIterationArray=newF;
@@ -61,41 +61,41 @@ for algoIterations=1:200
     for task=1:2
 
 
-        for i=2:(fSize(1))+1
-            for j=2:(fSize(2))+1
-                oneNeibourZero=newIterationArray(i-1,j-1)*newIterationArray(i-1,j)*newIterationArray(i-1,j+1)*newIterationArray(i+1,j-1)*newIterationArray(i+1,j)*newIterationArray(i+1,j+1)*newIterationArray(i,j+1)*newIterationArray(i,j-1);
-                if newIterationArray(i,j)==1 && oneNeibourZero==0
+        for x=2:(fSize(1))+1
+            for y=2:(fSize(2))+1
+                oneNeibourZero=newIterationArray(x-1,y-1)*newIterationArray(x-1,y)*newIterationArray(x-1,y+1)*newIterationArray(x+1,y-1)*newIterationArray(x+1,y)*newIterationArray(x+1,y+1)*newIterationArray(x,y+1)*newIterationArray(x,y-1);
+                if newIterationArray(x,y)==1 && oneNeibourZero==0
                     nonZeroTotal=0;
-                    if newIterationArray(i-1,j-1)%left top
+                    if newIterationArray(x-1,y-1)%left top
                         nonZeroTotal=nonZeroTotal+1;
                     end
 
-                    if newIterationArray(i-1,j)%left middle
+                    if newIterationArray(x-1,y)%left middle
                         nonZeroTotal=nonZeroTotal+1;
                     end
-                    if newIterationArray(i-1,j+1) % left bottom
+                    if newIterationArray(x-1,y+1) % left bottom
                         nonZeroTotal=nonZeroTotal+1;
                     end
-                    if newIterationArray(i+1,j-1) % right top
+                    if newIterationArray(x+1,y-1) % right top
                         nonZeroTotal=nonZeroTotal+1;
                     end
-                    if newIterationArray(i+1,j) % right middle
+                    if newIterationArray(x+1,y) % right middle
                         nonZeroTotal=nonZeroTotal+1;
                     end
-                    if newIterationArray(i+1,j+1) % right bottom
+                    if newIterationArray(x+1,y+1) % right bottom
                         nonZeroTotal=nonZeroTotal+1;
                     end
-                    if newIterationArray(i,j+1) % bottom middle
+                    if newIterationArray(x,y+1) % bottom middle
                         nonZeroTotal=nonZeroTotal+1;
                     end
-                    if newIterationArray(i,j-1) % top middle
+                    if newIterationArray(x,y-1) % top middle
                         nonZeroTotal=nonZeroTotal+1;
                     end
                     %%
                     %condition a
                     if (nonZeroTotal>=2) && (nonZeroTotal<=6)
 
-                        sequence=[newIterationArray(i,j-1) newIterationArray(i+1,j-1) newIterationArray(i+1,j) newIterationArray(i+1,j+1) newIterationArray(i,j+1) newIterationArray(i-1,j+1) newIterationArray(i-1,j) newIterationArray(i-1,j-1) newIterationArray(i,j-1)];
+                        sequence=[newIterationArray(x-1,y) newIterationArray(x-1,y+1) newIterationArray(x,y+1) newIterationArray(x+1,y+1) newIterationArray(x+1,y) newIterationArray(x+1,y-1) newIterationArray(x-1,y) newIterationArray(x-1,y-1) newIterationArray(x-1,y)];
                         %           p2,                          p3,                             p4,                  p5,                    p6,                     p7,                          p8,                    p9,                         p2
 
                         TValue=0;
@@ -114,27 +114,27 @@ for algoIterations=1:200
 
                             if task==1
                                 %condition c
-                                conditionc=newIterationArray(i,j-1) *newIterationArray(i+1,j)*newIterationArray(i,j+1);
+                                conditionc=newIterationArray(x-1,y) *newIterationArray(x,y+1)*newIterationArray(x+1,y);
                                 if conditionc==0
 
                                     %condition d task 1
-                                    conditiond=newIterationArray(i,j+1) *newIterationArray(i-1,j) *newIterationArray(i+1,j);
+                                    conditiond=newIterationArray(x,y+1) *newIterationArray(x+1,y) *newIterationArray(x,y-1);
                                     if conditiond==0
                                         %                                                                 disp("set zero")
-                                        workingArray(i-1,j-1)=0;
+                                        workingArray(x-1,y-1)=0;
                                     end
 
                                 end
                             else
                                 %condition task 2
-                                conditionc=newIterationArray(i,j-1) *newIterationArray(i+1,j)*newIterationArray(i-1,j);
+                                conditionc=newIterationArray(x-1,y) *newIterationArray(x,y+1)*newIterationArray(x,y-1);
                                 if conditionc==0
 
                                     %condition d task 2
-                                    conditiond=newIterationArray(i,j-1) *newIterationArray(i,j+1) *newIterationArray(i-1,j);
+                                    conditiond=newIterationArray(x,y-1) *newIterationArray(x+1,y) *newIterationArray(x-1,y);
                                     if conditiond==0
                                         %                                                                 disp("set zero")
-                                        workingArray(i-1,j-1)=0;
+                                        workingArray(x-1,y-1)=0;
                                     end
 
                                 end

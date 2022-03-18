@@ -3,10 +3,10 @@ close all
 
 %
 % f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\legBone.tif');
-f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\mapleLeaf.tif');
+% f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\mapleLeaf.tif');
 % f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\penny.tif');
 % f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\square.tif');
-% f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\triangle.tif');
+f = imread('C:\Users\rbhar\Documents\university\year 5\image processing\lab 5\github\ImageProcessingAssessment1\image1\triangle.tif');
 figure, imshow(f);
 % pause;
 % %
@@ -118,7 +118,7 @@ for algoIterations=1:200
                                 if conditionc==0
 
                                     %condition d task 1
-                                    conditiond=newIterationArray(i,j+1) *newIterationArray(i-1,j) *newIterationArray(i+1,j);
+                                    conditiond=newIterationArray(i+1,j) *newIterationArray(i,j+1) *newIterationArray(i-1,j);
                                     if conditiond==0
                                         %                                                                 disp("set zero")
                                         workingArray(i-1,j-1)=0;
